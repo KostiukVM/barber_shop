@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('offer_id')->unsigned();
             $table->time('start_time');
-            $table->bigInteger('duration');
+            $table->integer('duration');
             $table->bigInteger('branch_id')->unsigned();
         });
 

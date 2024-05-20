@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Barber extends Model
 {
     use HasFactory;
-    public function barbers()
+    protected $fillable = ['name'];
+    public function employees()
     {
-        return $this->hasMany(Barber::class);
+        return $this->hasMany(Employee::class);
     }
 
 }

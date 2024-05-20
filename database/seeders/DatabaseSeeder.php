@@ -1,25 +1,26 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\Emploee;
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Position;
+use App\Models\Offer;
+use App\Models\Company;
+use App\Models\Order;
+use App\Models\Employee;
+use App\Models\Client;
+use App\Models\Working_schedule;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
-
-        Emploee::factory()->create([
-            'name' => fake()->name(),
-            'position' => rand(1, 3),
-            'working_schedule' => rand(1, 3)
+        $this->call([
+            PositionSeeder::class,
+            OfferSeeder::class,
+            CompanySeeder::class,
+            OrderSeeder::class,
+            EmployeeSeeder::class,
+            ClientSeeder::class,
+            WorkingScheduleSeeder::class,
         ]);
     }
 }

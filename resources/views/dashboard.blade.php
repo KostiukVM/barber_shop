@@ -1,23 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+@extends('layouts.app')
 
-    </x-slot>
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Barbers</h2>
+                <ul>
+                    @extends('components.barber-form')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-wrap justify-between">
-
-                @foreach($forms as $form)
-
-                    <x-order-form :barberName="'Roma'" :photo="'photo1.jpg'" :comment="'Comment'"></x-order-form>
-                @endforeach
-                </div>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h2>Working Schedules</h2>
+                <ul>
+{{--                    @extends('components.barber-form')--}}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h2>Offers</h2>
+                <ul>
+{{--                    @extends('components.order-form')--}}
+                </ul>
             </div>
         </div>
     </div>
-
-</x-app-layout>
+@endsection

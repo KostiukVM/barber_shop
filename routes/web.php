@@ -39,3 +39,17 @@ Route::group(['middleware' => ['auth', 'checkRole:barber']], function () {
     Route::get('/assistant/dashboard', [BarberController::class, 'index'])->name('barber.dashboard');
     Route::get('/assistant/profile', [BarberController::class, 'index'])->name('barber.profile');
 });
+
+
+// routes/web.php
+
+Route::group(['middleware' => ['auth', 'checkRole:barber']], function () {
+    Route::get('/barber/dashboard', [BarberController::class, 'dashboard'])->name('barber.dashboard');
+});
+
+Route::post('/choose-barber', [BarberController::class, 'chooseBarber'])->name('choose.barber');
+
+
+Route::post('/barbers', [BarberController::class, 'store'])->name('barbers.store');
+
+Route::post('/service/booking', [ServiceController::class, 'bookService'])->name('service.booking');

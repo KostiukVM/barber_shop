@@ -13,7 +13,8 @@ class ManagerController extends Controller
     }
     public function dashboard(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('manager.dashboard');
+        $managers = Manager::all();
+        return view('manager.dashboard', compact('managers'));
     }
 
     public function profile(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
