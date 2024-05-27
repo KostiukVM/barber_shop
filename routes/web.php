@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarberController;
+use App\Http\Controllers\CpanelController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -54,3 +55,6 @@ Route::post('/choose-barber', [BarberController::class, 'chooseBarber'])->name('
 Route::post('/barbers', [BarberController::class, 'store'])->name('barbers.store');
 
 Route::post('/service/booking', [ServiceController::class, 'bookService'])->name('service.booking');
+
+
+Route::get('/cpanel', [CpanelController::class, 'cpanel'])->name('cpanel');

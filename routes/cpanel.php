@@ -2,5 +2,5 @@
 
 
 \Illuminate\Support\Facades\Route::get('/', function () {
-    return 'Yes!';
+    return view('cpanel');
 });
