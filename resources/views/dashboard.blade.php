@@ -13,13 +13,13 @@
             <div class="col-md-4">
                 <h2>Working Schedules</h2>
                 <ul>
-{{--                    @extends('components.barber-form')--}}
+                    @extends('components.time-form')
                 </ul>
             </div>
             <div class="col-md-4">
                 <h2>Offers</h2>
                 <ul>
-{{--                    @extends('components.order-form')--}}
+                    @extends('components.order-form')
                 </ul>
             </div>
         </div>
