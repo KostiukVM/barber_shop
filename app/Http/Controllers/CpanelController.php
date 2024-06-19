@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class CpanelController extends Controller
 {
+
+
     public function cpanel(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $users = User::all();
