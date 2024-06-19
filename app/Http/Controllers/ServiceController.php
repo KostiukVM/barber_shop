@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Offer;
+use App\Models\Order;
+use App\Models\OrderSteps;
 use App\Models\Working_schedule;
 use Illuminate\Http\Request;
 
@@ -75,5 +77,43 @@ class ServiceController extends Controller
     public function showConfirmation()
     {
         return view('booking.confirmation');
+    }
+    public function saveStep(SaveStepRequest $request)
+    {
+        $data = $request->validated();
+
+        $stepHandler = OrderSteps::getInstance();
+        $stepHandler->setStep($data['entity'], $data['data']);
+
+        $nextStep = $stepHandler->getNextStep();
+
+        if ($nextStep === OrderSteps::CONFIRMATION) {
+            $this->createOrder($stepHandler);
+            $stepHandler->renew();
+        }
+
+        return redirect()->route($this->getRouteForStep($nextStep));
+    }
+
+    private function getRouteForStep(?string $nextStep): string
+    {
+        return OrderSteps::STEP_TO_ROUTES_MAPPING[$nextStep] ?? 'pages.services';
+    }
+
+    private function createOrder(OrderSteps $stepHandler)
+    {
+        $orderData = [
+            'companyId'  => $stepHandler->getCompany()->id,
+            'serviceId'  => $stepHandler->getService()->id,
+            'workerId'   => $stepHandler->getWorker()->id,
+            'date'       => $stepHandler->getDate(),
+            'time'       => $stepHandler->getTime(),
+            'price'      => $stepHandler->getPrice(),
+            'duration'   => $stepHandler->getService()->duration,
+        ];
+
+        $order = Order::create($orderData);
+
+        return $order->id;
     }
 }
