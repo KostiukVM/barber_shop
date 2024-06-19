@@ -14,8 +14,6 @@ Route::get('/', function () {
 Route::get('/dashboard', [ServiceController::class, 'viewDashboard']
 )->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route:: post('/time', [ServiceController::class, 'viewTime']
-//)->middleware(['auth', 'verified'])->name('time');
 
 Route::get('/time', [ServiceController::class, 'viewTime'])->name('time');
 Route::post('/time', [ServiceController::class, 'viewTime'])->name('time.store');
