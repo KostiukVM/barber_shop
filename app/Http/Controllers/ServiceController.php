@@ -15,19 +15,45 @@ class ServiceController extends Controller
         return view('dashboard', ['barbers' => $barbers]);
     }
 
-    public function viewTime()
+    public function viewTime(Request $request)
     {
-        $employee = Employee::all()->where('working_schedule', 1);
-//      $schedule = Working_schedule::all()->where('id', 1);
+        $times = [
+            '08:00', '09:00', '10:00', '11:00',
+            '12:00', '13:00', '14:00', '15:00',
+            '16:00', '17:00', '18:00', '19:00'
+        ];
 
-        $times = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-        return view('time', ['times' => $times]);
+        if ($request->isMethod('post')) {
+            $validatedData = $request->validate([
+                'day' => 'required',
+                'time' => 'required'
+            ]);
+
+            $day = $validatedData['day'];
+            $time = $validatedData['time'];
+
+            // Шукаємо існуючий розклад або створюємо новий
+            $workingSchedule = Working_schedule::firstOrCreate(
+                [], // пошук без умов, тож знайде або створить перший запис
+                ['start_hours' => 800, 'end_hours' => 1800] // значення за замовчуванням
+            );
+
+            // Оновлюємо розклад для обраного дня
+            $workingSchedule->$day = true;
+            $workingSchedule->save();
+
+            return redirect()->route('time')->with('success', 'Schedule updated successfully.');
+        }
+
+        return view('time', compact('times'));
     }
+
     public function viewOffers()
     {
         $offers = Offer::all();
-        return view('offers', ['offers'=>$offers]);
+        return view('offers', ['offers' => $offers]);
     }
+
     public function showBookingForm()
     {
         return view('booking.form');
