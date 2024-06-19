@@ -6,6 +6,7 @@ use App\Models\Offer;
 use App\Models\User;
 use App\Models\Working_schedule;
 use Illuminate\Http\Request;
+// add cpanel
 
 class CpanelController extends Controller
 {

@@ -47,6 +47,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->group(base_path('routes/web.php'));
     }
+// add cpanel
 
     public function mapCpanelRoutes()
     {

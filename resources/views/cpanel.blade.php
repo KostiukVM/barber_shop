@@ -1,3 +1,5 @@
+// add cpanel
+
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')

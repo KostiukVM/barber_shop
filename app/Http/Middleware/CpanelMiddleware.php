@@ -6,7 +6,7 @@ use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+// add cpanel
 class CpanelMiddleware
 {
     /**
